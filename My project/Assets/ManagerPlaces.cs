@@ -5,41 +5,58 @@ using UnityEngine;
 
 public class ManagerPlaces : MonoBehaviour
 {
-    [SerializeField] private GameObject[] freePlaces;
-    [SerializeField] private Stack<GameObject> freePlacesStack = new Stack<GameObject>();
-    [SerializeField] private Stack<GameObject> bisyPlacesStack = new Stack<GameObject>();
+    [SerializeField] private GameObject[] freePlaces;    
     //[SerializeField] GameObject[] places;
 
     private void Start()
     {
-        for (int i = 0; i < freePlaces.Length; i++)
-        {
-            freePlacesStack.Push(freePlaces[i]);
-        }
+        //for (int i = 0; i < freePlaces.Length; i++)
+        //{
+        //    freePlacesStack.Push(freePlaces[i]);
+        //}
        
     }
 
     public GameObject GetFreePlace()
     {
-            var tempGameObject = freePlacesStack.Pop();
-            bisyPlacesStack.Push(tempGameObject);
-            return tempGameObject;
+        for (int i = 0; i < freePlaces.Length; i++)
+        {
+            if (freePlaces[i].GetComponent<FreePlace>().isFree == true)
+            {
+                freePlaces[i].GetComponent<FreePlace>().isFree = false;
+                return freePlaces[i].gameObject;
+            }
+        }
+
+        return gameObject;
+            //var tempGameObject = freePlacesStack.Pop();
+            //bisyPlacesStack.Push(tempGameObject);
+            //return tempGameObject;
     }
 
     public bool CanIGetSpace()
     {
-        //Debug.Log(freePlacesStack.Count);
-        if (freePlacesStack.Count > 0)
+        for (int i = 0; i < freePlaces.Length; i++)
         {
-            return true;
+            if (freePlaces[i].GetComponent<FreePlace>().isFree == true)
+            {
+                return true;
+            }
         }
-        else return false;
+        return false;
+        //Debug.Log(freePlacesStack.Count);
+        //if (freePlacesStack.Count > 0)
+        //{
+        //    return true;
+        //}
+        //else return false;
 
     }
 
-    public void FreeUpPlace()
+    public void FreeUpPlace(GameObject place)
     {
-        var tempGameObject = bisyPlacesStack.Pop();
-        freePlacesStack.Push(tempGameObject);       
+        place.GetComponent<FreePlace>().isFree = false;
+        //var tempGameObject = bisyPlacesStack.Pop();
+        //freePlacesStack.Push(tempGameObject);       
     }
 }

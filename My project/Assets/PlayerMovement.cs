@@ -55,7 +55,6 @@ public class PlayerMovement : MonoBehaviour
                 hit = Physics2D.Raycast(transform.position, PickUpPoint.transform.position, distanceCanHold, mask);
                 if (hit.collider != null)
                 {
-
                     //isPickUp = true;
                     hold = true;
                     hit.collider.gameObject.GetComponent<Collider2D>().isTrigger = true;
@@ -75,10 +74,7 @@ public class PlayerMovement : MonoBehaviour
                 hit.collider.gameObject.transform.position = PickUpPoint.transform.position;
                 hit.collider.gameObject.GetComponent<Collider2D>().isTrigger = false;
             }
-        }
-
-
-        
+        }  
 
     }
 

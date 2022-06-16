@@ -13,6 +13,7 @@ public class Client : MonoBehaviour
     [SerializeField] private bool isRecived = false;
     [SerializeField] private Transform exit;
     private GameObject icon;
+    private Transform childIcon;
     private bool isReached = false;
 
 
@@ -42,7 +43,12 @@ public class Client : MonoBehaviour
             if (isReached == false)
             {
                 icon = PackagePool.Instance.GetFromPool(requiredPackage.name, iñonPoint.position, iñonPoint.rotation);
-                icon.GetComponent<BoxCollider2D>().enabled = false;
+                //icon.GetComponentInChildren<BoxCollider2D>().enabled = false;
+                childIcon = icon.transform.GetChild(0);
+
+                childIcon.tag = "notBox";
+                icon.GetComponentInChildren<BoxCollider2D>().enabled = false;
+                //icon.GetComponent<BoxCollider2D>().enabled = false;
                // icon.SetActive(true);              // icon = PackagePool.Instance.GetFromPool(requiredPackage.name, iñonPoint.position, iñonPoint.rotation);
                 isReached = true;
                 StartCoroutine(SpawnIcon());
@@ -66,12 +72,16 @@ public class Client : MonoBehaviour
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
-    {       
+    {
+        Debug.Log("triget");
         if (collision.tag == "BOX")
-        {         
+        {
+            Debug.Log("tag box");
             if (collision.name == requiredPackage.name)
             {
+                //Debug.Log();
                 collision.gameObject.transform.parent.gameObject.SetActive(false);
+                childIcon.tag = "BOX";
                 icon.SetActive(false);
                 isRecived = true;
             }
@@ -84,7 +94,7 @@ public class Client : MonoBehaviour
     {
         if (place != null)
         {
-            manager.FreeUpPlace();
+            manager.FreeUpPlace(place);
         }
     }
 

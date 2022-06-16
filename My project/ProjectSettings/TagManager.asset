@@ -6,6 +6,8 @@ TagManager:
   tags:
   - BOX
   - Place
+  - notBox
+  - test
   layers:
   - Default
   - TransparentFX

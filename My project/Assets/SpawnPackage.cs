@@ -6,12 +6,17 @@ public class SpawnPackage : MonoBehaviour
 {
     [SerializeField] private Transform left, Right, stop;
     [SerializeField] private GameObject[] variablePackage;
+    private bool trig = false;
     //private GameObject newPackage;
 
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
-        StartCoroutine(Spawn());
+        if (trig == false)
+        {
+            trig = true;
+            StartCoroutine(Spawn());
+        }
     }
 
     protected IEnumerator Spawn()
@@ -19,10 +24,10 @@ public class SpawnPackage : MonoBehaviour
         while (true)
         {
             
-            var randomPackage = variablePackage[Random.Range(0, variablePackage.Length)];
-            Debug.Log(randomPackage.name);
-
-            //PackagePool.Instance.GetFromPool(randomPackage.name, transform.position, transform.rotation);
+          //  var randomPackage = variablePackage[Random.Range(0, variablePackage.Length)];
+          ////  Debug.Log(randomPackage.name);
+          //int x = 
+          //  PackagePool.Instance.GetFromPool(randomPackage.name, new Vector3 (Random.Range()), transform.rotation);
 
             yield return new WaitForSeconds(1f);
         }
