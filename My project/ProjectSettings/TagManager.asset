@@ -8,6 +8,7 @@ TagManager:
   - Place
   - notBox
   - test
+  - CanPick
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Water
   - UI
   - BOX
-  - 
+  - CanPick
   - 
   - 
   - 

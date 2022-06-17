@@ -7,13 +7,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speedMovemetn;
     [SerializeField] private float distanceCanHold = 0.5f;
     //s[SerializeField] private float Distance = 1f;
-    [SerializeField] private GameObject PickUpPoint;
+    [SerializeField] private GameObject pickUpPoint;
+    [SerializeField] private GameObject[] rayCastPoints;
     private GameObject holdPosition;
     private Rigidbody2D rb;
     private Vector2 movement;
     [SerializeField] private bool hold = false;
     //[SerializeField] bool isPickUp = false;
-    [SerializeField] private RaycastHit2D hit;
+    [SerializeField] private RaycastHit2D[] hits;
     [SerializeField] private LayerMask mask;
     
 
@@ -30,19 +31,24 @@ public class PlayerMovement : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
         if ( movement.x > 0 )
         {
-            PickUpPoint.transform.position = new Vector3(transform.position.x + distanceCanHold, transform.position.y, 0f);
+            pickUpPoint.transform.eulerAngles = new Vector3(0f, 0f, 0f );
+            //   PickUpPoint.transform.eulerAngles = new Vector3(0f, 90f, 0f);
+            //PickUpPoint.transform.position = new Vector3(transform.position.x + distanceCanHold, transform.position.y, 0f);
         }
         else if (movement.x < 0)
         {
-            PickUpPoint.transform.position = new Vector3(transform.position.x - distanceCanHold, transform.position.y, 0f);
+            pickUpPoint.transform.eulerAngles = new Vector3(0f, 0f,180f );
+            //PickUpPoint.transform.position = new Vector3(transform.position.x - distanceCanHold, transform.position.y, 0f);
         }
         if (movement.y > 0)
         {
-            PickUpPoint.transform.position = new Vector3(transform.position.x, transform.position.y + distanceCanHold, 0f);
+            pickUpPoint.transform.eulerAngles = new Vector3(0f, 0f, 90f);
+            //PickUpPoint.transform.position = new Vector3(transform.position.x, transform.position.y + distanceCanHold, 0f);
         }
         if (movement.y < 0)
         {
-            PickUpPoint.transform.position = new Vector3(transform.position.x, transform.position.y - distanceCanHold, 0f);
+            pickUpPoint.transform.eulerAngles = new Vector3(0f, 0f, 270f);
+            //PickUpPoint.transform.position = new Vector3(transform.position.x, transform.position.y - distanceCanHold, 0f);
         }
 
 
@@ -50,38 +56,73 @@ public class PlayerMovement : MonoBehaviour
         {
             if (hold == false)
             {
-                Debug.Log("try picup");
                 Physics2D.queriesStartInColliders = false;
-                hit = Physics2D.Raycast(transform.position, PickUpPoint.transform.position, distanceCanHold, mask);
-                if (hit.collider != null)
+                for (int i = 0; i < rayCastPoints.Length; i++)
                 {
-                    //isPickUp = true;
-                    hold = true;
-                    hit.collider.gameObject.GetComponent<Collider2D>().isTrigger = true;
-                }
+                    hits[i] = Physics2D.Raycast(transform.position, rayCastPoints[i].transform.position, distanceCanHold, mask);
 
+                    if (hits[i].collider != null)
+                    {
+
+                        hold = true;
+                        hits[i].collider.gameObject.GetComponent<Collider2D>().isTrigger = true;
+
+                    }
+                }
             }
+            else
+            {
+                hold = false;
+
+                //if ( hit.collider.gameObject.GetComponent<Rigidbody2D>() != null)
+                //{
+                //    /// hit.collider.gameObject.GetComponent<Rigidbody2D>().
+                //}
+            }
+
         }
+
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    if (hold == false)
+        //    {
+        //        Debug.Log("try picup");
+        //        Physics2D.queriesStartInColliders = false;
+        //        hit = Physics2D.Raycast(transform.position, PickUpPoint.transform.position, distanceCanHold, mask);
+        //        if (hit.collider != null)
+        //        {
+        //            //isPickUp = true;
+        //            hold = true;
+        //            hit.collider.gameObject.GetComponent<Collider2D>().isTrigger = true;
+        //        }
+
+        //    }
+        //}
 
 
         if (hold == true)
         {
-           hit.collider.gameObject.transform.position = gameObject.transform.position;
-            if (Input.GetKeyDown(KeyCode.P))
+            for (int i = 0; i < rayCastPoints.Length; i++)
             {
-                Debug.Log("try put back");
-                hold = false;
-                hit.collider.gameObject.transform.position = PickUpPoint.transform.position;
-                hit.collider.gameObject.GetComponent<Collider2D>().isTrigger = false;
+                if (hits[i].collider != null)
+                {
+                    hits[i].collider.gameObject.transform.position = gameObject.transform.position;
+                    Debug.Log("try put back");
+                    hits[i].collider.gameObject.transform.position = rayCastPoints[0].transform.position;
+                    hits[i].collider.gameObject.GetComponent<Collider2D>().isTrigger = false;
+                }
             }
-        }  
+        }
 
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, PickUpPoint.transform.position);
+        for (int i = 0; i < rayCastPoints.Length; i++)
+        {
+            Gizmos.DrawLine(transform.position, rayCastPoints[i].transform.position);
+        }
     }
 
     private void FixedUpdate()
