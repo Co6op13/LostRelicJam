@@ -6,17 +6,6 @@ using UnityEngine;
 public class ManagerPlaces : MonoBehaviour
 {
     [SerializeField] private GameObject[] freePlaces;    
-    //[SerializeField] GameObject[] places;
-
-    private void Start()
-    {
-        //for (int i = 0; i < freePlaces.Length; i++)
-        //{
-        //    freePlacesStack.Push(freePlaces[i]);
-        //}
-       
-    }
-
     public GameObject GetFreePlace()
     {
         for (int i = 0; i < freePlaces.Length; i++)
@@ -27,11 +16,8 @@ public class ManagerPlaces : MonoBehaviour
                 return freePlaces[i].gameObject;
             }
         }
-
         return gameObject;
-            //var tempGameObject = freePlacesStack.Pop();
-            //bisyPlacesStack.Push(tempGameObject);
-            //return tempGameObject;
+
     }
 
     public bool CanIGetSpace()
@@ -44,19 +30,10 @@ public class ManagerPlaces : MonoBehaviour
             }
         }
         return false;
-        //Debug.Log(freePlacesStack.Count);
-        //if (freePlacesStack.Count > 0)
-        //{
-        //    return true;
-        //}
-        //else return false;
-
     }
 
     public void FreeUpPlace(GameObject place)
     {
-        place.GetComponent<FreePlace>().isFree = false;
-        //var tempGameObject = bisyPlacesStack.Pop();
-        //freePlacesStack.Push(tempGameObject);       
+        place.GetComponent<FreePlace>().isFree = false;     
     }
 }

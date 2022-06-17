@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 865122578287599052}
   - component: {fileID: 6855463056177690462}
   - component: {fileID: 7640938174610284217}
-  m_Layer: 6
+  - component: {fileID: 817254759}
+  m_Layer: 7
   m_Name: Appliances
-  m_TagString: BOX
+  m_TagString: CanPick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,6 +148,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d206d7cb5189344fae165005579fbc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &817254759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188194115377198422}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8565ae8f11ff96a419090871a3ae12ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  manager: {fileID: 0}
 --- !u!1001 &9018713487670953454
 PrefabInstance:
   m_ObjectHideFlags: 0

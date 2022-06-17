@@ -9,6 +9,8 @@ TagManager:
   - notBox
   - test
   - CanPick
+  - ClientPlaces
+  - PackagePlaces
   layers:
   - Default
   - TransparentFX

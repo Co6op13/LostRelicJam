@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 7610398278563354069}
   - component: {fileID: 7207395089850419553}
   - component: {fileID: 6048916619293117387}
-  m_Layer: 6
+  - component: {fileID: 1944831174}
+  m_Layer: 7
   m_Name: Letter
-  m_TagString: BOX
+  m_TagString: CanPick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,6 +148,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d206d7cb5189344fae165005579fbc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1944831174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7667872123354286269}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8565ae8f11ff96a419090871a3ae12ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  manager: {fileID: 0}
 --- !u!1001 &8396678666922598574
 PrefabInstance:
   m_ObjectHideFlags: 0

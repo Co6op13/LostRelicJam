@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Client : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float speed = 3f;
     [SerializeField] private ManagerPlaces manager;
     private GameObject place;
     [SerializeField] private GameObject requiredPackage;
@@ -21,7 +21,7 @@ public class Client : MonoBehaviour
     {
         
        
-        manager = FindObjectOfType<ManagerPlaces>();
+        manager = GameObject.FindGameObjectWithTag("ClientPlaces").gameObject.GetComponent<ManagerPlaces>(); //FindObjectOfType<ManagerPlaces>();
         exit =    FindObjectOfType<SpawnClients>().GetComponent<Transform>();
         if (place == null)
         {
@@ -73,10 +73,10 @@ public class Client : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("triget");
+        //Debug.Log("triget");
         if (collision.tag == "BOX")
         {
-            Debug.Log("tag box");
+            //Debug.Log("tag box");
             if (collision.name == requiredPackage.name)
             {
                 //Debug.Log();

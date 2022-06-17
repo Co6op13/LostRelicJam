@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 3629393801165402557}
   - component: {fileID: 8274331895388699726}
   - component: {fileID: 4746076198798661815}
-  m_Layer: 6
+  - component: {fileID: 2038830468}
+  m_Layer: 7
   m_Name: Parcel
-  m_TagString: BOX
+  m_TagString: CanPick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,6 +148,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d206d7cb5189344fae165005579fbc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2038830468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6907877730372703810}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8565ae8f11ff96a419090871a3ae12ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  manager: {fileID: 0}
 --- !u!1001 &5341305846833775464
 PrefabInstance:
   m_ObjectHideFlags: 0
