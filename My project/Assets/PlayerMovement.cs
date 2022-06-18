@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-//    [SerializeField] private float speedMovement;
+    [SerializeField] private ParticleSystem dust;
+    [SerializeField] private Animator animator;
     [SerializeField] private float distanceCanHold = 0.5f;
-    //s[SerializeField] private float Distance = 1f;
+
     [SerializeField] private GameObject pickUpPoint;
     [SerializeField] private GameObject[] rayCastPoints;
     private GameObject holdPosition;
@@ -35,9 +36,24 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();        
     }
 
+
+    void CreateDust()
+    {
+        dust.Play();
+    }
     // Update is called once per frame
     void Update()
     {
+        if ((movement.x != 0f)||(movement.y !=  0f))
+        {
+            animator.SetBool("isRunning", true);
+            CreateDust();
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+        }
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         if ( movement.x > 0 )
