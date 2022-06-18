@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
                     Vector3 toOther = rayCastPoints[i].transform.position - transform.position;
                     hit = Physics2D.Raycast(transform.position, toOther, distanceCanHold, mask);
                     Debug.DrawRay(transform.position, rayCastPoints[i].transform.position, Color.yellow);
-                    Debug.Log(i);
+                    //Debug.Log(i);
                     if (hit.collider != null)
                     {
                         
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
                         holdPackage = hit.collider.gameObject;
                         holdPackage.GetComponent<Rigidbody2D>().simulated = false;
                         //holdPackage.GetComponent<Collider2D>().isTrigger = true;
-                        Debug.Log("ray " + i + "--------------------------------------------------------------------------");
+                       // Debug.Log("ray " + i + "--------------------------------------------------------------------------");
                         break;
 
                     }                    

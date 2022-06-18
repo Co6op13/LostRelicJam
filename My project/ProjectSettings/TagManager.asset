@@ -11,6 +11,8 @@ TagManager:
   - CanPick
   - ClientPlaces
   - PackagePlaces
+  - ReceivePlace
+  - SendPlace
   layers:
   - Default
   - TransparentFX
