@@ -9,9 +9,9 @@ public class ActivateShipment : MonoBehaviour
     [SerializeField] private GameObject progressBar;
     [SerializeField] private float timeActivation;
     [SerializeField] private float coefficient;
-    private float proc, oneProc;
+    [SerializeField] private float proc, oneProc;
     private bool isSend = false;
-    private bool trigerCoroutine = true;
+    private bool trigerActivation = true;
     private float timeWait;
     private bool isShipmentOver = false;
 
@@ -19,49 +19,76 @@ public class ActivateShipment : MonoBehaviour
     {
         coefficient = progressBar.transform.localScale.y;
         oneProc = 100 / timeWaitService;
-        timeWait = timeWaitService;
-       
+        timeWait = timeWaitService;       
     }
 
 
-    private void Update()
-    {
-        if (trigerCoroutine == true)
-        {
-            trigerCoroutine = false;
-            StartCoroutine(ActiveShipmetPoint());
-        }
-    }
 
     private void FixedUpdate()
     {
+        if (trigerActivation == true)
+        {
+            trigerActivation = false;
+            ReActiveShipmets();
+        }
+
         if ((timeWait < 0) & (isSend == false))
         {
             GameManager.Instance.InkreaseDiscontentClients(5);
-
+            timeWait = timeWaitService;
+            ReActiveShipmets();
         }
         else
         {
             timeWait -= Time.fixedDeltaTime;
-
             proc = oneProc * timeWait / 100 * coefficient;
-            progressBar.transform.localScale = new Vector3(progressBar.transform.localScale.x, proc, progressBar.transform.localScale.z);
+            progressBar.transform.localScale = new Vector3(progressBar.transform.localScale.x, proc , progressBar.transform.localScale.z);
+            if (CheckActiveShipments() == false)
+            {
+                GameManager.Instance.ShipmentsGo(5);
+                timeWait = timeWaitService;
+                ReActiveShipmets();
+            }
+            //float pos = 
+            //progressBar.transform.position = new Vector3(progressBar.transform.position.x,
+            //    transform.position.y - timeWait / 100 * coefficient, progressBar.transform.position.z);
         }
     }
 
-    IEnumerator ActiveShipmetPoint ()
+    void ReActiveShipmets()
     {
-        while (isShipmentOver == false)
+        for (int i = 0; i < shipments.Length; i++)           
         {
-            for (int i = 0; i < shipments.Length; i++)
-                if (shipments[i].gameObject.activeSelf == false)
-                {
-                    shipments[i].gameObject.SetActive(true);
-                    //yield return new WaitForSeconds(200f);
-                }
-            yield return new WaitForSeconds(timeActivation);
+            shipments[i].gameObject.SetActive(false);
+            shipments[i].gameObject.SetActive(true);
         }
 
-
     }
+
+    bool CheckActiveShipments()
+    {
+        for (int i = 0; i < shipments.Length; i++)
+        {
+            if (shipments[i].gameObject.activeSelf == true)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    //IEnumerator ActiveShipmetPoint ()
+    //{
+    //    while (isShipmentOver == false)
+    //    {
+    //        for (int i = 0; i < shipments.Length; i++)
+    //            if (shipments[i].gameObject.activeSelf == false)
+    //            {
+    //                shipments[i].gameObject.SetActive(true);
+    //                //yield return new WaitForSeconds(200f);
+    //            }
+    //        yield return new WaitForSeconds(timeActivation);
+    //    }
+
+
+    //}
 }

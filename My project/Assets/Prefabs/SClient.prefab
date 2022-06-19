@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace8f164a0b78824b9305b91bd670f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeWaitService: 1
+  timeWaitService: 30
   timeWait: 0
   progressBar: {fileID: 701827456}
   coefficient: 8

@@ -55,16 +55,22 @@ public class ShipmentPackage : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        if (icon != null)
+            icon.SetActive(false);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("triget");
+        //Debug.Log("triget");
         if (collision.tag == "BOX")
         {
-            Debug.Log("tag box");
+           // Debug.Log("tag box");
             Debug.Log(collision.name + "  " + requiredPackage.name);
             if (collision.name == requiredPackage.name)
             {
-                Debug.Log(collision.name +"  "+ icon.name);
+                //Debug.Log(collision.name +"  "+ icon.name);
                 collision.gameObject.transform.parent.gameObject.SetActive(false);
                 icon.GetComponent<SpriteRenderer>().sortingOrder = 610;
                 childIcon.GetComponent<SpriteRenderer>().sortingOrder = 600;

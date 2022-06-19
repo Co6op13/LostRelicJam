@@ -109,8 +109,8 @@ public class RClient : MonoBehaviour
             trigerCoroutine = false;
             ShowIcon();
         }
-
-        if ((currentPositionInQueue == 0) & (Vector3.Distance(transform.position, direction.transform.position) < 0.1f))
+        if (direction != null)
+            if ((currentPositionInQueue == 0) & (Vector3.Distance(transform.position, direction.transform.position) < 0.1f))
             {
                 gameObject.GetComponent<WaitingService>().enabled = true;
             }   

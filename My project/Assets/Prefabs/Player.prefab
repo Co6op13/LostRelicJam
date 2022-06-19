@@ -139,7 +139,6 @@ GameObject:
   - component: {fileID: 7642595947301390386}
   - component: {fileID: 7642595947301390396}
   - component: {fileID: 7642595947301390397}
-  - component: {fileID: 1959601552}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -177,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fd9e27c85ebad44b830424133643b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dust: {fileID: 0}
+  dust: {fileID: 417252940}
   animator: {fileID: 1429929649}
   distanceCanHold: 1
   pickUpPoint: {fileID: 7642595946903250537}
@@ -240,26 +239,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
---- !u!95 &1959601552
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7642595947301390398}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9e9d281e8841d8743847f90bc5ff1aa0, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7642595947895243617
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +314,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: a7253322a1d1e34489e73d77ba3528ce, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.22748305, g: 0.8490566, b: 0.44717988, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -378,11 +357,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3629797307118360536, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.01
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3629797307118360536, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 3629797307118360536, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
       propertyPath: m_LocalPosition.z
@@ -420,10 +399,67 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dusp
       objectReference: {fileID: 0}
+    - target: {fileID: 3629797307118360542, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
+      propertyPath: lengthInSec
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629797307118360542, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
+      propertyPath: simulationSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629797307118360542, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629797307118360542, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
+      propertyPath: VelocityModule.y.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629797307118360542, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
+      propertyPath: VelocityModule.inWorldSpace
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629797307118360542, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629797307118360542, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629797307118360542, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
+      propertyPath: LifetimeByEmitterSpeedModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629797307118360542, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629797307118360542, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629797307118360542, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.b
+      value: 0.6627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629797307118360542, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.g
+      value: 0.36862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629797307118360542, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.r
+      value: 0.5647059
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
 --- !u!4 &417252938 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3629797307118360536, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
+  m_PrefabInstance: {fileID: 3629797306719228306}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &417252940 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3629797307118360542, guid: c015ddc463fa752419a087cc4700bc38, type: 3}
   m_PrefabInstance: {fileID: 3629797306719228306}
   m_PrefabAsset: {fileID: 0}
